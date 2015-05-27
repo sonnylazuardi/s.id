@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>S.id URL Shortener</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body ng-app="sid">
+  <div ng-controller="AppCtrl">
+    <form>
+      <input type="text" ng-model="url" class="form-control">
+      <button class="btn btn-primary" ng-click="shorten()">Shorten</button>
+    </form>
+  </div>
+  
+  <script src="https://code.angularjs.org/1.3.15/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.3.15/angular-sanitize.min.js"></script>
+  <script>
+  angular.module('sid', [])
+  .controller('AppCtrl', function($scope) {
+    $scope.url = 'http://example.com/';
+    $scope.shorten = function() {
+
+    }
+  });
+  </script>
+</body>
+</html>
