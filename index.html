@@ -10,9 +10,10 @@
   <div ng-controller="AppCtrl">
     <div class="container">
       <form>
-        <input type="text" ng-model="url" class="form-control">
+        <input type="text" ng-model="url" class="form-control" placeholder="Input URL here">
         <button class="btn btn-primary" ng-click="shorten()">Shorten</button>
-        <div ng-bind="result">
+        <div>
+          {{result}}
         </div>
       </form>
     </div>
@@ -23,12 +24,16 @@
   <script>
   angular.module('sid', ['ngSanitize'])
   .controller('AppCtrl', function($scope, $http) {
-    $scope.url = 'http://example.com/';
+    $scope.url = '';
     $scope.result = '';
     $scope.shorten = function() {
-      $http.get('http://busintime.id:3450/shorten/'+encodeURIComponent())
+      $scope.result = 'Loading...';
+      $http.get('http://busintime.id:3450/shorten/'+encodeURIComponent($scope.url))
       .success(function(data) {
         $scope.result = 'http://s.id/'+data.shorten;
+      })
+      .error(function(error) {
+        console.log(error);
       });
     }
   });
